@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "cn.xintinglei.bedrock.bridge.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "RegistrySyncManagerMixin",
+    "ServerConfigurationNetworkHandlerAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

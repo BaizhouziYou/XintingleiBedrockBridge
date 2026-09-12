@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "xintinglei_bedrock_bridge",
+  "version": "${version}",
+  "name": "Xintinglei Bedrock Bridge",
+  "description": "Exports the exact Fabric registry data used by the Xintinglei Geyser compatibility layer.",
+  "authors": [
+    "Xintinglei"
+  ],
+  "license": "MIT",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "cn.xintinglei.bedrock.bridge.XintingleiBedrockBridge"
+    ]
+  },
+  "mixins": [
+    "xintinglei-bedrock-bridge.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.14",
+    "fabric-api": "*",
+    "minecraft": "~1.21.4",
+    "java": ">=21"
+  }
+}
