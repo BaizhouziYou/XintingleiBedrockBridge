@@ -160,13 +160,13 @@ final class BedrockResourcePackExporter {
         header.addProperty("name", "Xintinglei Fabric Mod Compatibility");
         header.addProperty("description", "Auto-generated from the active Fabric mod JARs");
         header.addProperty("uuid", HEADER_UUID.toString());
-        header.add("version", version(1, 0, 0));
+        header.add("version", version(1, 1, 0));
         header.add("min_engine_version", version(1, 21, 0));
         root.add("header", header);
         JsonObject module = new JsonObject();
         module.addProperty("type", "resources");
         module.addProperty("uuid", MODULE_UUID.toString());
-        module.add("version", version(1, 0, 0));
+        module.add("version", version(1, 1, 0));
         JsonArray modules = new JsonArray();
         modules.add(module);
         root.add("modules", modules);
