@@ -42,16 +42,6 @@ final class RegistryManifestExporter {
     static final String OUTPUT_DIRECTORY = "xintinglei-bedrock-bridge";
     static final String OUTPUT_FILE = "compat-manifest.json";
 
-    private static final Set<String> TARGET_NAMESPACES = Set.of(
-        "better_mcdonalds_mod",
-        "happy_ghast_legacy",
-        "thecopperrail"
-    );
-    private static final List<String> TARGET_MODS = List.of(
-        "better_mcdonalds_mod",
-        "happy_ghast_legacy",
-        "thecopperrail"
-    );
     private static final Gson GSON = new GsonBuilder()
         .disableHtmlEscaping()
         .setPrettyPrinting()
@@ -99,7 +89,7 @@ final class RegistryManifestExporter {
 
     private static JsonObject exportMods() throws IOException {
         JsonObject result = new JsonObject();
-        for (String modId : TARGET_MODS) {
+        for (String modId : CompatibilityTargets.MOD_IDS) {
             ModContainer container = FabricLoader.getInstance().getModContainer(modId)
                 .orElseThrow(() -> new IOException("Required target mod is not loaded: " + modId));
 
@@ -195,7 +185,7 @@ final class RegistryManifestExporter {
 
     private static List<Identifier> sortedTargetIds(Set<Identifier> ids) {
         return ids.stream()
-            .filter(id -> TARGET_NAMESPACES.contains(id.getNamespace()))
+            .filter(id -> CompatibilityTargets.NAMESPACES.contains(id.getNamespace()))
             .sorted(Comparator.comparing(Identifier::toString))
             .toList();
     }

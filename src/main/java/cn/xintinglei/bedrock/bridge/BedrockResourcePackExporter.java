@@ -30,9 +30,6 @@ final class BedrockResourcePackExporter {
     static final String OUTPUT_FILE = "Xintinglei-ModCompat.mcpack";
 
     private static final Gson GSON = new Gson();
-    private static final List<String> TARGET_MODS = List.of(
-        "better_mcdonalds_mod", "happy_ghast_legacy", "thecopperrail"
-    );
     private static final List<String> DRINKS = List.of(
         "coffee", "energy_drink", "herbal_tea", "berry_juice", "mint_cooler", "miner_soda",
         "ocean_tonic", "blaze_brew", "monster_black", "monster_white", "monster_green", "monster_pink",
@@ -84,8 +81,10 @@ final class BedrockResourcePackExporter {
                 JsonObject item = element.getAsJsonObject();
                 String[] split = splitIdentifier(item.get("identifier").getAsString());
                 String key = RegistryManifestExporter.textureKey(split[0], split[1]);
-                String path = copiedTexturePaths.getOrDefault("item:" + split[0] + ":" + split[1],
-                    copiedTexturePaths.getOrDefault("block:" + split[0] + ":" + split[1], fallback));
+                String identifier = split[0] + ":" + split[1];
+                String path = copiedTexturePaths.getOrDefault("item:" + identifier,
+                    copiedTexturePaths.getOrDefault("block:" + identifier,
+                        CompatibilityTargets.VANILLA_ITEM_TEXTURES.getOrDefault(identifier, fallback)));
                 itemTextures.put(key, path);
             }
             for (String drink : DRINKS) {
@@ -125,7 +124,7 @@ final class BedrockResourcePackExporter {
 
     private static List<TextureSource> collectTextures() throws IOException {
         List<TextureSource> result = new ArrayList<>();
-        for (String modId : TARGET_MODS) {
+        for (String modId : CompatibilityTargets.MOD_IDS) {
             ModContainer container = FabricLoader.getInstance().getModContainer(modId)
                 .orElseThrow(() -> new IOException("Target mod is not loaded: " + modId));
             Path jar = container.getOrigin().getPaths().stream().filter(Files::isRegularFile).findFirst()
