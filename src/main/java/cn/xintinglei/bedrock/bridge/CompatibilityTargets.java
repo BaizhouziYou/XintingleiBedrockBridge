@@ -16,7 +16,8 @@ final class CompatibilityTargets {
         "better_mcdonalds_mod",
         "happy_ghast_legacy",
         "thecopperrail",
-        "centifolia"
+        "centifolia",
+        "xintinglei_drinks"
     );
 
     static final Set<String> NAMESPACES = Set.copyOf(MOD_IDS);

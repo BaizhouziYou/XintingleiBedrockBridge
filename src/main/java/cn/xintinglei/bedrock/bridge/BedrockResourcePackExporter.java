@@ -35,8 +35,10 @@ final class BedrockResourcePackExporter {
         "ocean_tonic", "blaze_brew", "monster_black", "monster_white", "monster_green", "monster_pink",
         "apple_carrot_juice", "clear_soda", "vodka", "almond_water", "bean_juice", "mega_boba_tea"
     );
-    private static final UUID HEADER_UUID = UUID.nameUUIDFromBytes("xintinglei-mod-compat-header-v1".getBytes(StandardCharsets.UTF_8));
-    private static final UUID MODULE_UUID = UUID.nameUUIDFromBytes("xintinglei-mod-compat-module-v1".getBytes(StandardCharsets.UTF_8));
+    // New pack identities force Bedrock clients to fetch the custom drink textures instead of
+    // reusing a stale v1 cache after xintinglei_drinks was added to the export.
+    private static final UUID HEADER_UUID = UUID.nameUUIDFromBytes("xintinglei-mod-compat-header-v2".getBytes(StandardCharsets.UTF_8));
+    private static final UUID MODULE_UUID = UUID.nameUUIDFromBytes("xintinglei-mod-compat-module-v2".getBytes(StandardCharsets.UTF_8));
 
     private BedrockResourcePackExporter() {
     }
